@@ -38,4 +38,6 @@ public class Entry extends AVObject {
     public String getThumbUrl() {
         return getThumb().getUrl();
     }
+
+    public static final Creator CREATOR = AVObject.CREATOR;
 }

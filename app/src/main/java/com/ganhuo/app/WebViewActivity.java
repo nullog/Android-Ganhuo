@@ -2,10 +2,12 @@ package com.ganhuo.app;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -13,7 +15,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
-public class WebViewActivity extends ActionBarActivity {
+public class WebViewActivity extends AppCompatActivity {
 
     private WebView mWebView;
     private WebClient mWebClient;
@@ -81,6 +83,9 @@ public class WebViewActivity extends ActionBarActivity {
         mWebView.onResume();
     }
 
+    /**
+     *
+     */
     private class WebClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -99,10 +104,9 @@ public class WebViewActivity extends ActionBarActivity {
         }
 
         @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            super.onReceivedError(view, errorCode, description, failingUrl);
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
         }
-
     }
 
     private class WebChrome extends WebChromeClient {
